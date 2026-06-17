@@ -50,10 +50,48 @@ body {
 }
 
 .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
     color: var(--text);
     text-decoration: none;
-    font-size: 0.98rem;
+    white-space: nowrap;
+}
+
+.brand-badge {
+    width: 2.8rem;
+    height: 2.8rem;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--gold), #f5d86b);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    border-radius: 0.78rem;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.brand-line {
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.brand-sub {
+    margin-top: 0.22rem;
+    font-size: 0.64rem;
     font-weight: 700;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--muted);
 }
 
 nav {
@@ -280,10 +318,14 @@ nav a {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
+    align-items: stretch;
 }
 
 .contact-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -291,7 +333,7 @@ nav a {
     padding: 1.5rem 1rem;
     text-align: center;
     text-decoration: none;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .contact-card:hover {
@@ -308,11 +350,16 @@ nav a {
     font-weight: 600;
     margin-bottom: 0.35rem;
     word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .contact-card span {
     color: var(--muted);
     font-size: 0.9rem;
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
 }
 
 .disabled-card {
@@ -371,11 +418,23 @@ nav a {
 }
 
 .interiors-panel {
-    background: #fff;
-    border: 1px solid var(--border);
+    background: linear-gradient(180deg, #fffef5 0%, #fffaf0 100%);
+    border: 1px solid #e9d58a;
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 10px 28px rgba(201, 162, 39, 0.12);
     padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.interiors-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold), #f3d56e);
 }
 
 .interiors-top {
