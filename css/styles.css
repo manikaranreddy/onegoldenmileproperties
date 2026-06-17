@@ -128,6 +128,14 @@ nav a {
 .hero-text {
     max-width: 640px;
     color: var(--muted);
+    font-size: 1rem;
+}
+
+.hero-note {
+    margin-top: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.92rem;
 }
 
 .hero-actions {
@@ -177,6 +185,10 @@ nav a {
     gap: 1rem;
 }
 
+.property-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .portfolio-card,
 .area-card,
 .contact-panel,
@@ -187,6 +199,22 @@ nav a {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 1.25rem;
+}
+
+.property-card {
+    overflow: hidden;
+    padding: 0;
+}
+
+.property-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.property-card-content {
+    padding: 1rem 1.1rem 1.2rem;
 }
 
 .portfolio-card h3,
@@ -234,27 +262,212 @@ nav a {
     background: #fff;
 }
 
-.contact-panel {
-    display: grid;
-    gap: 0.75rem;
+.contact-page {
+    padding-top: 4rem;
 }
 
-.contact-list li {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 0.5rem;
+.contact-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 2rem;
 }
 
-.contact-list span {
-    font-weight: 700;
+.contact-intro {
+    margin-top: 0.5rem;
+}
+
+.contact-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.contact-card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+}
+
+.contact-card:hover {
+    border-color: var(--gold);
+}
+
+.contact-card h3 {
     color: var(--text);
+    margin-bottom: 0.4rem;
+}
+
+.contact-card p {
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    word-break: break-word;
+}
+
+.contact-card span {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.disabled-card {
+    pointer-events: none;
+}
+
+.icon-circle,
+.interiors-icon,
+.chatbot-icon {
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    background: #f7edbf;
+    border-radius: 999px;
+    margin: 0 auto 0.8rem;
+    font-size: 1rem;
+}
+
+.services-wrap {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+.services-text h2 {
+    margin-bottom: 0.8rem;
+}
+
+.service-desc {
+    margin-bottom: 1rem;
+}
+
+.service-check-list {
+    list-style: none;
+}
+
+.service-check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin-bottom: 0.7rem;
+}
+
+.check-badge {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-grid;
+    place-items: center;
+    background: #f7edbf;
+    border-radius: 999px;
+    color: var(--gold-dark);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.interiors-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+}
+
+.interiors-top {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.interiors-top h3 {
+    color: var(--text);
+    margin-bottom: 0.2rem;
+}
+
+.interiors-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.interiors-box p,
+.interiors-box a,
+.interiors-box span {
+    display: block;
+}
+
+.interiors-box p {
+    color: var(--text);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.interiors-box a {
+    color: var(--gold-dark);
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 0.4rem;
+}
+
+.chatbot-section {
+    background: #fff;
 }
 
 .chatbot-panel {
     text-align: center;
-    min-height: 180px;
+    max-width: 760px;
+    min-height: 220px;
     display: grid;
     place-items: center;
+    gap: 0.5rem;
+    padding: 2rem 1rem;
+}
+
+.chatbot-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #f7edbf;
+    color: var(--gold-dark);
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.cta-section {
+    background: #1f1f1f;
+}
+
+.cta-panel {
+    text-align: center;
+    max-width: 860px;
+}
+
+.cta-panel h2 {
+    color: #fff;
+    margin-bottom: 0.6rem;
+}
+
+.cta-panel p {
+    color: rgba(255, 255, 255, 0.74);
+}
+
+.cta-button {
+    display: inline-flex;
+    margin: 1rem auto;
+    gap: 0.5rem;
+}
+
+.cta-disclaimer {
+    font-size: 0.9rem;
+    font-style: italic;
 }
 
 .site-footer {
@@ -271,6 +484,14 @@ nav a {
 
     .service-list {
         grid-template-columns: 1fr;
+    }
+
+    .services-wrap {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -290,6 +511,10 @@ nav a {
     }
 
     .contact-list li {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card-grid {
         grid-template-columns: 1fr;
     }
 }
