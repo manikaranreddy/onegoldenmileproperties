@@ -264,7 +264,7 @@
             <div class="container cta-panel">
                 <h2>Ready to Get Started?</h2>
                 <p>Call us now to discuss your property requirements. We are committed to finding you the perfect property at the best value.</p>
-                <a class="button cta-button" href="tel:9848352234">Call 98483 52234</a>
+                <a class="button cta-button" href="tel:9848352234">Call +91-9848352234</a>
                 <p class="cta-disclaimer">Agent/Brokerage charges are applicable. Conditions Apply.</p>
             </div>
         </section>
@@ -276,6 +276,13 @@
         </div>
     </footer>
 
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://onegoldenmile.app.n8n.cloud/webhook/a4ded5e4-4fa3-4a7b-a894-d09d4e23534a/chat'
+        });
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>
