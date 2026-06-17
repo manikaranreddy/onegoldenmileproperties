@@ -9,6 +9,17 @@
     --border: #eadfa6;
     --shadow: 0 12px 35px rgba(38, 38, 38, 0.08);
     --radius: 16px;
+    --chat--window--bottom: 1rem;
+    --chat--window--right: auto;
+    --chat--window--left: 1rem;
+    --chat--window--z-index: 9999;
+    --chat--window--width: 380px;
+    --chat--window--height: 560px;
+    --chat--toggle--size: 68px;
+    --chat--toggle--background: var(--gold);
+    --chat--toggle--hover--background: var(--gold-dark);
+    --chat--toggle--color: #fff;
+    --chat--toggle--border-radius: 999px;
 }
 
 * {

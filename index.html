@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Golden Mile Properties</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -276,11 +277,15 @@
         </div>
     </footer>
 
+    <div id="n8n-chat"></div>
+
     <script type="module">
         import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
         createChat({
-            webhookUrl: 'https://onegoldenmile.app.n8n.cloud/webhook/a4ded5e4-4fa3-4a7b-a894-d09d4e23534a/chat'
+            webhookUrl: 'https://onegoldenmile.app.n8n.cloud/webhook/a4ded5e4-4fa3-4a7b-a894-d09d4e23534a/chat',
+            target: '#n8n-chat',
+            mode: 'window'
         });
     </script>
     <script src="js/script.js"></script>
