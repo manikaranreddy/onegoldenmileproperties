@@ -335,8 +335,10 @@ nav a {
 .contact-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     min-width: 0;
+    min-height: 100%;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -360,6 +362,10 @@ nav a {
     color: var(--text);
     font-weight: 600;
     margin-bottom: 0.35rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     word-break: break-word;
     overflow-wrap: anywhere;
 }
