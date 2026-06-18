@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details | One Golden Mile Properties</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">
+                <span class="brand-badge">OGM</span>
+                <span class="brand-text">
+                    <span class="brand-line">One Golden Mile</span>
+                    <span class="brand-sub">Properties</span>
+                </span>
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <a class="button button-small" href="index.html#contact">Send Enquiry</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="property-details-page">
+            <div class="container">
+                <div class="property-detail-layout">
+                    <div class="property-detail-card">
+                        <img id="propertyImage" src="" alt="Property image">
+                        <div class="property-detail-body">
+                            <p class="eyebrow">Property Details</p>
+                            <h1 id="propertyTitle">Property</h1>
+                            <p id="propertyIntro"></p>
+                            <div class="property-cta">
+                                <a class="button" id="mapLink" href="#" target="_blank" rel="noopener noreferrer">Open on Google Maps</a>
+                                <a class="button button-secondary" href="index.html#contact">Contact Agent</a>
+                            </div>
+                        </div>
+                    </div>
+                    <aside class="property-info-panel">
+                        <h3>Quick Info</h3>
+                        <ul class="property-info-list">
+                            <li><strong>Property ID</strong><span id="propertyId"></span></li>
+                            <li><strong>Location</strong><span id="propertyLocation"></span></li>
+                            <li><strong>Price Range</strong><span id="propertyPrice"></span></li>
+                            <li><strong>Availability</strong><span id="propertyAvailability"></span></li>
+                        </ul>
+
+                        <table class="property-table">
+                            <tr>
+                                <th>Property Type</th>
+                                <td id="propertyType"></td>
+                            </tr>
+                            <tr>
+                                <th>Area</th>
+                                <td id="propertyArea"></td>
+                            </tr>
+                            <tr>
+                                <th>Additional Details</th>
+                                <td id="propertyAdditional"></td>
+                            </tr>
+                        </table>
+
+                        <div class="property-highlights">
+                            <h3>Highlights</h3>
+                            <ul id="propertyHighlights"></ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="section section-alt contact-page" id="contact">
+        <div class="container">
+            <div class="contact-header">
+                <p class="eyebrow">Reach Out</p>
+                <h2>Contact Us</h2>
+                <p class="contact-intro">Ready to find your dream property? Get in touch with us today.</p>
+            </div>
+            <div class="contact-card-grid">
+                <a class="contact-card" href="tel:9848352234">
+                    <div class="icon-circle">☎</div>
+                    <h3>Phone</h3>
+                    <p>+91 98483 52234</p>
+                </a>
+                <a class="contact-card" href="tel:7680956459">
+                    <div class="icon-circle">☎</div>
+                    <h3>Phone</h3>
+                    <p>+91 76809 56459</p>
+                </a>
+                <a class="contact-card" href="https://wa.me/919848352234" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-circle">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p>+91 98483 52234</p>
+                </a>
+                <a class="contact-card" href="https://wa.me/917680956459" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-circle">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p>+91 76809 56459</p>
+                </a>
+                <a class="contact-card" href="mailto:onegoldenmileproperties@gmail.com">
+                    <div class="icon-circle">✉</div>
+                    <h3>Email</h3>
+                    <p>onegoldenmileproperties@gmail.com</p>
+                </a>
+                <div class="contact-card disabled-card">
+                    <div class="icon-circle">📍</div>
+                    <h3>Location</h3>
+                    <p>Kokapet, Hyderabad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section">
+        <div class="container cta-panel">
+            <h2>Ready to Get Started?</h2>
+            <p>Call us now to discuss your property requirements.</p>
+            <a class="button cta-button" href="tel:9848352234">Call +91-9848352234</a>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> One Golden Mile Properties</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/property-data.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const categoryKey = params.get('category') || 'flats';
+        const slug = params.get('slug') || 'flat-001';
+        const category = getPropertyCategory(categoryKey);
+        const data = getPropertyItem(categoryKey, slug);
+
+        document.title = `${data.title} | One Golden Mile Properties`;
+        document.getElementById('propertyImage').src = data.image;
+        document.getElementById('propertyImage').alt = data.title;
+        document.getElementById('propertyTitle').textContent = data.title;
+        document.getElementById('propertyIntro').textContent = category.intro;
+        document.getElementById('propertyId').textContent = data.propertyId;
+        document.getElementById('propertyLocation').textContent = data.location;
+        document.getElementById('propertyPrice').textContent = data.priceRange;
+        document.getElementById('propertyAvailability').textContent = data.availability;
+        document.getElementById('propertyType').textContent = category.label;
+        document.getElementById('propertyArea').textContent = data.location;
+        document.getElementById('propertyAdditional').textContent = data.additionalDetails;
+        document.getElementById('mapLink').href = data.googleMaps;
+
+        const highlights = document.getElementById('propertyHighlights');
+        highlights.innerHTML = '';
+        data.highlights.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            highlights.appendChild(li);
+        });
+    </script>
+</body>
+</html>
