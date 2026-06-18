@@ -12,7 +12,7 @@ const propertyCatalog = {
                 location: 'Ramky One Odyssey, Kokapet, Hyderabad',
                 googleMaps: 'https://maps.app.goo.gl/Yd8Hy3pnUpTViU9f8',
                 priceRange: '₹1.85 Cr- ₹3.5 Cr',
-                availability: 'Under Construction',
+                availability: 'Under Construction. Landowner flats are available in the project.',
                 additionalDetails: '1750SFT to 3020SFT, Ready to occupy by Dec-2026, site visits, and legal support available.',
                 highlights: [
                     'Strategic IT Proximity: Located minutes from the Financial District and Gachibowli, drastically cutting daily commute times.',
@@ -21,7 +21,7 @@ const propertyCatalog = {
                     'Modern Urban Infrastructure: Built within the well-planned layout, ensuring wide roads, underground utilities, and smart security.',
                     'High Investment Returns: Strong rental demand from corporate professionals drives rapid property appreciation and excellent rental yields.'
                 ],
-                image: 'assets/Flats.PNG'
+                image: 'assets/flats/ROO.JPEG'
             },
             {
                 slug: 'flat-002',
@@ -39,7 +39,7 @@ const propertyCatalog = {
                     'Modern Urban Infrastructure: Built within the well-planned layout, ensuring wide roads, underground utilities, and smart security.',
                     'High Investment Returns: Strong rental demand from corporate professionals drives rapid property appreciation and excellent rental yields.'
                 ],
-                image: 'assets/Flats.PNG'
+                image: 'assets/flats/JTS.jpg'
             },
             {
                 slug: 'flat-003',
@@ -57,7 +57,7 @@ const propertyCatalog = {
                     'Modern Urban Infrastructure: Built within the well-planned layout, ensuring wide roads, underground utilities, and smart security.',
                     'High Investment Returns: Strong rental demand from corporate professionals drives rapid property appreciation and excellent rental yields.'
                 ],
-                image: 'assets/Flats.PNG'
+                image: 'assets/flats/JTS.jpg'
             },
             {
                 slug: 'flat-004',
@@ -75,7 +75,7 @@ const propertyCatalog = {
                     'Modern Urban Infrastructure: Built within the well-planned layout, ensuring wide roads, underground utilities, and smart security.',
                     'High Investment Returns: Strong rental demand from corporate professionals drives rapid property appreciation and excellent rental yields.'
                 ],
-                image: 'assets/Flats.PNG'
+                image: 'assets/flats/JTS.jpg'
             },
             {
                 slug: 'flat-005',
@@ -93,7 +93,29 @@ const propertyCatalog = {
                     'Modern Urban Infrastructure: Built within the well-planned layout, ensuring wide roads, underground utilities, and smart security.',
                     'High Investment Returns: Strong rental demand from corporate professionals drives rapid property appreciation and excellent rental yields.'
                 ],
-                image: 'assets/Flats.PNG'
+                image: 'assets/flats/JTS.jpg'
+            },
+            {
+                slug: 'flat-006',
+                title: 'Flat Project 6',
+                propertyId: 'OGMFLATS00006',
+                location: 'Moonglade, Manchirevila, Hyderabad',
+                googleMaps: 'https://maps.app.goo.gl/YWxCyvZwnuwmJ7AE7',
+                priceRange: '₹1.4 Cr - ₹4 Cr',
+                availability: 'Under Construction',
+                additionalDetails: 'Landowner flats are available in the project.',
+                highlights: [
+                    'Project Name: Ira Moonglade',
+                    'Location: Kokapet',
+                    'Site Address: Narsingi by the Exit 18A, Manchirevila, Nehru Outer Ring Road, Close to the Financial District Hyderabad.',
+                    'Total Area : 14 acres',
+                    'Total Units: 2400 Units',
+                    'No. Of floors : 2B + Stilt + 4 Podiums + 40 Floors',
+                    'No. of towers: 7 Towers',
+                    'Configuration: 3 BHK : 1400 - 3045 sqft; 4 BHK : 3535 - 3950 sqft',
+                    'Expected Completion Time: 2029 onwards'
+                ],
+                image: 'assets/flats/Flat_OGMFLATS00006.PNG'
             }
         ]
     },
@@ -116,9 +138,10 @@ const propertyCatalog = {
                     'Total Layout Area: ~36-Acre Master-Planned Gated Community.',
                     'Premium Plot Sizes: 300 & 400 Sq. Yards configurations.',
                     'Spacious Built-up Areas: Ultra-luxury layouts ranging from 4,200 Sq. Ft. to 5,200 Sq. Ft.',
-                    'Development Timeline: 3 years from HMDA approval (~4 years to possession). 2030 Project Completion'
+                    'Development Timeline: 3 years from HMDA approval (~4 years to possession). 2030 Project Completion',
+                    'Security Structure: Investor capital is structurally secured via immediate registration of raw, undivided agricultural land (5 Guntas for 1.5 Cr / 1 Acre for 4.8 Cr) in yourname.'
                 ],
-                image: 'assets/Villas.PNG'
+                image: 'assets/villas/Villa_OGMVILLAS00001.jpeg'
             }
         ]
     },
@@ -135,7 +158,7 @@ const propertyCatalog = {
                 location: 'Airport Town 1, Kothur, Hyderabad',
                 googleMaps: 'https://maps.app.goo.gl/3uQn4g9SzAJ9RP5h9',
                 priceRange: '₹18,000/Square Yard',
-                availability: '500 Square yards available. South West Corner plot.',
+                availability: '500 Square yards available. South West Corner plot. 40 feets wide road on South and 40 feets wide road on West.',
                 additionalDetails: 'DTCP Approved layouts, easy loan assistance, and legal documentation support.',
                 highlights: [
                     'Excellent growth corridor',
@@ -152,7 +175,7 @@ const propertyCatalog = {
                 googleMaps: 'https://maps.app.goo.gl/3uQn4g9SzAJ9RP5h9',
                 priceRange: '₹11,000/Square Yard',
                 availability: '400 Square yards available. East and West facing roads.',
-                additionalDetails: 'GP Approved layouts, easy loan assistance, and legal documentation support.',
+                additionalDetails: 'GP Approved layouts, LRS paid, easy loan assistance, and legal documentation support.',
                 highlights: [
                     'Excellent growth corridor',
                     'Close to major expressways and RGIA airport',
@@ -222,7 +245,7 @@ const propertyCatalog = {
                 propertyId: 'OGMFARMLAND00001',
                 location: 'Venkannaguda, Palmakole, Hyderabad',
                 googleMaps: 'https://maps.app.goo.gl/JDEsmeJYhYkGQEuEA',
-                priceRange: '₹50,000/Square Yard',
+                priceRange: '₹25,000/Square Yard',
                 availability: '812 square yards available',
                 additionalDetails: 'Suitable for farming, future development, or long-term holding.',
                 highlights: [
