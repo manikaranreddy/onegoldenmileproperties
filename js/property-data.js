@@ -142,6 +142,24 @@ const propertyCatalog = {
                     'Security Structure: Investor capital is structurally secured via immediate registration of raw, undivided agricultural land (5 Guntas for 1.5 Cr / 1 Acre for 4.8 Cr) in yourname.'
                 ],
                 image: 'assets/villas/Villa_OGMVILLAS00001.jpeg'
+            },
+            {
+                slug: 'villa-002',
+                title: 'Villa Project 2',
+                propertyId: 'OGMVILLAS00002',
+                location: 'Kardanur, Kollur, Telangana, Hyderabad',
+                googleMaps: 'https://maps.app.goo.gl/AGF1PRd7KmxweFYT6',
+                priceRange: '₹2.6 Cr',
+                availability: 'Limited units available for OTP',
+                additionalDetails: 'Ideal for family living, or resale investment.',
+                highlights: [
+                    'Total project area: 35 acres.',
+                    'Villa plot sizes starting from 267 sq. yards',
+                    'All-inclusive villa price: ₹2.60 Crore for a 267 sq. yard villa',
+                    'Planned project possession and delivery: December 2030',
+                    'Security Structure: 5 guntas of land will be registered directly from the landlord to the investor.'
+                ],
+                image: 'assets/Villas.PNG'
             }
         ]
     },
