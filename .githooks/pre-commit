@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -e
+# Pre-commit hook: validate CSV files under data/
+# To enable hooks in this repo run:
+# git config core.hooksPath .githooks
+
+PYTHON_CMD=""
+if command -v python3 >/dev/null 2>&1; then
+  PYTHON_CMD=python3
+elif command -v python >/dev/null 2>&1; then
+  PYTHON_CMD=python
+elif command -v py >/dev/null 2>&1; then
+  PYTHON_CMD=py
+fi
+
+if [ -z "$PYTHON_CMD" ]; then
+  echo "[pre-commit] Python not found in PATH. Install Python to enable CSV validation or skip enabling hooks."
+  exit 1
+fi
+
+echo "[pre-commit] Running CSV validator..."
+"$PYTHON_CMD" scripts/validate_csv.py
+STATUS=$?
+if [ $STATUS -ne 0 ]; then
+  echo "[pre-commit] CSV validation failed. Commit aborted."
+  exit $STATUS
+fi
+
+echo "[pre-commit] CSV validation passed."
+exit 0
