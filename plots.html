@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Plots | One Golden Mile Properties</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/property-data.js"></script>
+    <script src="js/property-loader.js"></script>
 </head>
 <body>
     <header class="site-header">
@@ -96,24 +96,26 @@
 
     <script src="js/script.js"></script>
     <script>
-        const category = getPropertyCategory('plots');
-        document.getElementById('categoryTitle').textContent = category.label;
-        const cardsContainer = document.getElementById('propertyCards');
-        cardsContainer.innerHTML = category.items.map(item => `
-            <a class="property-link" href="property-details.html?category=plots&slug=${item.slug}">
-                <article class="portfolio-card property-card">
-                    <img src="${item.image}" alt="${item.title}" loading="lazy">
-                    <div class="property-card-content">
-                        <h3>${item.title}</h3>
-                        <p>${item.location}</p>
-                        <ul>
-                            <li><strong>ID:</strong> ${item.propertyId}</li>
-                            <li><strong>Price:</strong> ${item.priceRange}</li>
-                        </ul>
-                    </div>
-                </article>
-            </a>
-        `).join('');
+        loadPropertyCatalog().then(() => {
+            const category = getPropertyCategory('plots');
+            document.getElementById('categoryTitle').textContent = category.label;
+            const cardsContainer = document.getElementById('propertyCards');
+            cardsContainer.innerHTML = category.items.map(item => `
+                <a class="property-link" href="property-details.html?category=plots&slug=${item.slug}">
+                    <article class="portfolio-card property-card">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="property-card-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.location}</p>
+                            <ul>
+                                <li><strong>ID:</strong> ${item.propertyId}</li>
+                                <li><strong>Price:</strong> ${item.priceRange}</li>
+                            </ul>
+                        </div>
+                    </article>
+                </a>
+            `).join('');
+        }).catch(err => console.error('Failed loading property catalog', err));
     </script>
 </body>
 </html>

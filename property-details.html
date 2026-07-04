@@ -132,35 +132,37 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script src="js/property-data.js"></script>
+    <script src="js/property-loader.js"></script>
     <script>
         const params = new URLSearchParams(window.location.search);
         const categoryKey = params.get('category') || 'flats';
         const slug = params.get('slug') || 'flat-001';
-        const category = getPropertyCategory(categoryKey);
-        const data = getPropertyItem(categoryKey, slug);
+        loadPropertyCatalog().then(() => {
+            const category = getPropertyCategory(categoryKey);
+            const data = getPropertyItem(categoryKey, slug);
 
-        document.title = `${data.title} | One Golden Mile Properties`;
-        document.getElementById('propertyImage').src = data.image;
-        document.getElementById('propertyImage').alt = data.title;
-        document.getElementById('propertyTitle').textContent = data.title;
-        document.getElementById('propertyIntro').textContent = category.intro;
-        document.getElementById('propertyId').textContent = data.propertyId;
-        document.getElementById('propertyLocation').textContent = data.location;
-        document.getElementById('propertyPrice').textContent = data.priceRange;
-        document.getElementById('propertyAvailability').textContent = data.availability;
-        document.getElementById('propertyType').textContent = category.label;
-        document.getElementById('propertyArea').textContent = data.location;
-        document.getElementById('propertyAdditional').textContent = data.additionalDetails;
-        document.getElementById('mapLink').href = data.googleMaps;
+            document.title = `${data.title} | One Golden Mile Properties`;
+            document.getElementById('propertyImage').src = data.image;
+            document.getElementById('propertyImage').alt = data.title;
+            document.getElementById('propertyTitle').textContent = data.title;
+            document.getElementById('propertyIntro').textContent = category.intro;
+            document.getElementById('propertyId').textContent = data.propertyId;
+            document.getElementById('propertyLocation').textContent = data.location;
+            document.getElementById('propertyPrice').textContent = data.priceRange;
+            document.getElementById('propertyAvailability').textContent = data.availability;
+            document.getElementById('propertyType').textContent = category.label;
+            document.getElementById('propertyArea').textContent = data.location;
+            document.getElementById('propertyAdditional').textContent = data.additionalDetails;
+            document.getElementById('mapLink').href = data.googleMaps;
 
-        const highlights = document.getElementById('propertyHighlights');
-        highlights.innerHTML = '';
-        data.highlights.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item;
-            highlights.appendChild(li);
-        });
+            const highlights = document.getElementById('propertyHighlights');
+            highlights.innerHTML = '';
+            (data.highlights || []).forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                highlights.appendChild(li);
+            });
+        }).catch(err => console.error('Failed loading property catalog', err));
     </script>
 </body>
 </html>
