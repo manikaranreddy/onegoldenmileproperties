@@ -81,23 +81,46 @@ const PropertyLoader = (function () {
         return csvToObjects(text);
     }
 
+    function normalizeImageList(value) {
+        if (!value) return [];
+        return String(value)
+            .split('|')
+            .map(s => s.trim())
+            .map(s => s.replace(/^['"]|['"]$/g, ''))
+            .filter(Boolean)
+            .filter((s, index, arr) => arr.indexOf(s) === index);
+    }
+
+    function getImageList(row) {
+        const candidates = [row.image, row.images, row.imageGallery, row.gallery, row.imageList];
+        for (let i = 1; i <= 10; i++) {
+            candidates.push(row[`image${i}`]);
+        }
+        const flattened = candidates.flatMap(normalizeImageList);
+        return flattened.length ? flattened : (row.image ? [row.image] : []);
+    }
+
     async function load() {
         const categories = Object.keys(meta);
         for (const key of categories) {
             try {
                 const rows = await fetchCSV(key);
-                const items = rows.map(r => ({
-                    slug: r.slug || (r.propertyId || '').toLowerCase().replace(/[^a-z0-9\-]/gi,'-'),
-                    title: r.title || '',
-                    propertyId: r.propertyId || '',
-                    location: r.location || '',
-                    googleMaps: r.googleMaps || r.googleMaps || r.mapLink || '',
-                    priceRange: r.priceRange || r.price || '',
-                    availability: r.availability || '',
-                    additionalDetails: r.additionalDetails || r.additional || '',
-                    highlights: (r.highlights || '').split('|').map(s => s.trim()).filter(Boolean),
-                    image: r.image || ''
-                }));
+                const items = rows.map(r => {
+                    const images = getImageList(r);
+                    return {
+                        slug: r.slug || (r.propertyId || '').toLowerCase().replace(/[^a-z0-9\-]/gi,'-'),
+                        title: r.title || '',
+                        propertyId: r.propertyId || '',
+                        location: r.location || '',
+                        googleMaps: r.googleMaps || r.googleMaps || r.mapLink || '',
+                        priceRange: r.priceRange || r.price || '',
+                        availability: r.availability || '',
+                        additionalDetails: r.additionalDetails || r.additional || '',
+                        highlights: (r.highlights || '').split('|').map(s => s.trim()).filter(Boolean),
+                        image: images[0] || '',
+                        images: images
+                    };
+                });
                 catalog[key] = Object.assign({}, meta[key], { items, intro: meta[key].intro });
             } catch (err) {
                 console.warn('PropertyLoader: failed loading', key, err);

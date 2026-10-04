@@ -30,7 +30,12 @@
             <div class="container">
                 <div class="property-detail-layout">
                     <div class="property-detail-card">
-                        <img id="propertyImage" src="" alt="Property image">
+                        <div class="property-gallery">
+                            <div class="property-gallery-main">
+                                <img id="propertyImage" src="" alt="Property image">
+                            </div>
+                            <div id="propertyGalleryThumbs" class="property-gallery-thumbs" aria-label="Property gallery"></div>
+                        </div>
                         <div class="property-detail-body">
                             <p class="eyebrow">Property Details</p>
                             <h1 id="propertyTitle">Property</h1>
@@ -109,10 +114,18 @@
         loadPropertyCatalog().then(() => {
             const category = getPropertyCategory(categoryKey);
             const data = getPropertyItem(categoryKey, slug);
+            if (!data) {
+                document.getElementById('propertyTitle').textContent = 'Property not found';
+                return;
+            }
+
+            const imageList = (data.images && data.images.length ? data.images : [data.image]).filter(Boolean);
+            const mainImage = document.getElementById('propertyImage');
+            const galleryThumbs = document.getElementById('propertyGalleryThumbs');
 
             document.title = `${data.title} | One Golden Mile Properties`;
-            document.getElementById('propertyImage').src = data.image;
-            document.getElementById('propertyImage').alt = data.title;
+            mainImage.src = imageList[0] || '';
+            mainImage.alt = data.title;
             document.getElementById('propertyTitle').textContent = data.title;
             document.getElementById('propertyIntro').textContent = category.intro;
             document.getElementById('propertyId').textContent = data.propertyId;
@@ -123,6 +136,20 @@
             document.getElementById('propertyArea').textContent = data.location;
             document.getElementById('propertyAdditional').textContent = data.additionalDetails;
             document.getElementById('mapLink').href = data.googleMaps;
+
+            galleryThumbs.innerHTML = '';
+            imageList.forEach((image, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = image;
+                thumb.alt = `${data.title} view ${index + 1}`;
+                thumb.className = 'property-gallery-thumb' + (index === 0 ? ' is-active' : '');
+                thumb.addEventListener('click', () => {
+                    mainImage.src = image;
+                    mainImage.alt = `${data.title} view ${index + 1}`;
+                    [...galleryThumbs.children].forEach((child) => child.classList.toggle('is-active', child === thumb));
+                });
+                galleryThumbs.appendChild(thumb);
+            });
 
             const highlights = document.getElementById('propertyHighlights');
             highlights.innerHTML = '';
