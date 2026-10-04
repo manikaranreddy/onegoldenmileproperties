@@ -81,14 +81,22 @@ const PropertyLoader = (function () {
         return csvToObjects(text);
     }
 
+    function normalizeImagePath(value) {
+        if (!value) return '';
+        const cleaned = String(value)
+            .trim()
+            .replace(/^['"]|['"]$/g, '')
+            .replace(/\\/g, '/');
+        return cleaned.replace(/\/+/g, '/');
+    }
+
     function normalizeImageList(value) {
         if (!value) return [];
-        return String(value)
-            .split('|')
-            .map(s => s.trim())
-            .map(s => s.replace(/^['"]|['"]$/g, ''))
+        const rawItems = Array.isArray(value) ? value : String(value).split(/[|\n]+/);
+        return rawItems
+            .map(item => normalizeImagePath(item))
             .filter(Boolean)
-            .filter((s, index, arr) => arr.indexOf(s) === index);
+            .filter((item, index, arr) => arr.indexOf(item) === index);
     }
 
     function getImageList(row) {
@@ -97,7 +105,7 @@ const PropertyLoader = (function () {
             candidates.push(row[`image${i}`]);
         }
         const flattened = candidates.flatMap(normalizeImageList);
-        return flattened.length ? flattened : (row.image ? [row.image] : []);
+        return flattened.length ? flattened : (row.image ? [normalizeImagePath(row.image)] : []);
     }
 
     async function load() {
