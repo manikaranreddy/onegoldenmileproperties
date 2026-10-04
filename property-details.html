@@ -110,10 +110,18 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const categoryKey = params.get('category') || 'flats';
+        const hasIdParam = params.has('id');
         const propertyKey = params.get('id') || params.get('key') || params.get('slug') || 'flat-001';
+
         loadPropertyCatalog().then(() => {
             const category = getPropertyCategory(categoryKey);
-            const data = getPropertyItemByKey(categoryKey, propertyKey) || getPropertyItem(categoryKey, propertyKey);
+            let data = getPropertyItemByKey(categoryKey, propertyKey) || getPropertyItem(categoryKey, propertyKey);
+
+            if (!hasIdParam && !params.has('id') && params.has('slug') && data && data.urlKey) {
+                const safeUrl = `${window.location.pathname}?category=${encodeURIComponent(categoryKey)}&id=${encodeURIComponent(data.urlKey)}`;
+                window.history.replaceState({}, '', safeUrl);
+            }
+
             if (!data) {
                 document.getElementById('propertyTitle').textContent = 'Property not found';
                 return;
