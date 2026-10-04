@@ -272,8 +272,17 @@ nav a {
 .property-card img {
     width: 100%;
     height: 220px;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background: linear-gradient(135deg, #f7f7f7, #ececec);
+    padding: 0.25rem;
+    box-sizing: border-box;
+    transition: transform 0.25s ease;
+}
+
+.property-link:hover .property-card img,
+.property-link:focus-visible .property-card img {
+    transform: scale(1.04);
 }
 
 .property-card-content {
@@ -315,11 +324,23 @@ nav a {
     gap: 0.75rem;
 }
 
+.property-gallery-main {
+    background: linear-gradient(135deg, #f7f7f7, #ececec);
+    overflow: hidden;
+}
+
 .property-gallery-main img {
     width: 100%;
     height: 420px;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background: linear-gradient(135deg, #f7f7f7, #ececec);
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+}
+
+.property-gallery-main img:hover {
+    transform: scale(1.02);
 }
 
 .property-gallery-thumbs {
@@ -334,17 +355,59 @@ nav a {
     height: 60px;
     border: 2px solid transparent;
     border-radius: 10px;
-    object-fit: cover;
+    object-fit: contain;
     cursor: pointer;
     opacity: 0.7;
     transition: all 0.2s ease;
-    background: #f3f3f3;
+    background: linear-gradient(135deg, #f7f7f7, #ececec);
+    padding: 0.15rem;
+    box-sizing: border-box;
 }
 
 .property-gallery-thumb.is-active {
     border-color: var(--primary);
     opacity: 1;
     transform: translateY(-1px);
+}
+
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    place-items: center;
+    padding: 2rem;
+    background: rgba(17, 17, 17, 0.78);
+    z-index: 1200;
+}
+
+.image-lightbox.is-open {
+    display: grid;
+}
+
+.image-lightbox img {
+    max-width: min(92vw, 1200px);
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.35);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--text);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
 }
 
 .property-detail-body {
