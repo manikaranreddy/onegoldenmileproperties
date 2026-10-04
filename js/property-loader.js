@@ -107,8 +107,12 @@ const PropertyLoader = (function () {
                 const rows = await fetchCSV(key);
                 const items = rows.map(r => {
                     const images = getImageList(r);
+                    const propertyId = r.propertyId || r.slug || r.title || '';
+                    const baseKey = `${key}:${propertyId}`;
+                    const urlKey = hashString(baseKey);
                     return {
                         slug: r.slug || (r.propertyId || '').toLowerCase().replace(/[^a-z0-9\-]/gi,'-'),
+                        urlKey,
                         title: r.title || '',
                         propertyId: r.propertyId || '',
                         location: r.location || '',
@@ -131,6 +135,16 @@ const PropertyLoader = (function () {
         return catalog;
     }
 
+    function hashString(value) {
+        let hash = 2166136261;
+        for (let i = 0; i < value.length; i++) {
+            const code = value.charCodeAt(i);
+            hash ^= code;
+            hash = Math.imul(hash, 16777619);
+        }
+        return (hash >>> 0).toString(36);
+    }
+
     function getCategory(key) {
         return catalog[key] || catalog['flats'] || { items: [] };
     }
@@ -140,10 +154,17 @@ const PropertyLoader = (function () {
         return (cat.items || []).find(i => i.slug === slug) || (cat.items && cat.items[0]) || null;
     }
 
+    function getItemByKey(key, urlKey) {
+        const cat = getCategory(key);
+        return (cat.items || []).find(i => i.urlKey === urlKey || i.slug === urlKey) || (cat.items && cat.items[0]) || null;
+    }
+
     return {
         loadPropertyCatalog: load,
         getPropertyCategory: getCategory,
-        getPropertyItem: getItem
+        getPropertyItem: getItem,
+        getPropertyItemByKey: getItemByKey,
+        hashString: hashString
     };
 })();
 
@@ -151,3 +172,4 @@ const PropertyLoader = (function () {
 window.loadPropertyCatalog = PropertyLoader.loadPropertyCatalog;
 window.getPropertyCategory = PropertyLoader.getPropertyCategory;
 window.getPropertyItem = PropertyLoader.getPropertyItem;
+window.getPropertyItemByKey = PropertyLoader.getPropertyItemByKey;

@@ -110,10 +110,10 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const categoryKey = params.get('category') || 'flats';
-        const slug = params.get('slug') || 'flat-001';
+        const propertyKey = params.get('id') || params.get('key') || params.get('slug') || 'flat-001';
         loadPropertyCatalog().then(() => {
             const category = getPropertyCategory(categoryKey);
-            const data = getPropertyItem(categoryKey, slug);
+            const data = getPropertyItemByKey(categoryKey, propertyKey) || getPropertyItem(categoryKey, propertyKey);
             if (!data) {
                 document.getElementById('propertyTitle').textContent = 'Property not found';
                 return;

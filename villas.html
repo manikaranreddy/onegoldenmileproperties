@@ -70,7 +70,7 @@
             document.getElementById('categoryTitle').textContent = category.label;
             const cardsContainer = document.getElementById('propertyCards');
             cardsContainer.innerHTML = category.items.map(item => `
-                <a class="property-link" href="property-details.html?category=villas&slug=${item.slug}">
+                <a class="property-link" href="property-details.html?category=villas&id=${item.urlKey}">
                     <article class="portfolio-card property-card">
                         <img src="${item.image}" alt="${item.title}" loading="lazy">
                         <div class="property-card-content">
